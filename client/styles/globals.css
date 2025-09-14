@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #__next {
+  height: 100%;
+}
+
+/* Prevent menu wrap */
+.no-wrap {
+  white-space: nowrap;
+}
