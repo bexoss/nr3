@@ -5,9 +5,9 @@ import { User } from '../models/user.model.js'
 
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/cosmetics'
 
-const email = process.env.ADMIN_EMAIL || 'admin@local.test'
+const email = process.env.ADMIN_EMAIL || 'admin@test.com'
 const name = process.env.ADMIN_NAME || 'Admin'
-const password = process.env.ADMIN_PASSWORD || 'changeme123!'
+const password = process.env.ADMIN_PASSWORD || 'test'
 
 async function main() {
   await mongoose.connect(MONGO_URI)

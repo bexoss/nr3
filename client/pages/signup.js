@@ -1,21 +1,30 @@
 import PublicLayout from '../components/PublicLayout'
+import { useState } from 'react'
+import { Button, Input, Title1, Body2 } from '../components/ui'
 
 export default function Signup() {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   return (
     <PublicLayout>
-      <div className="max-w-sm mx-auto px-4 py-10 space-y-4">
-        <h1 className="text-2xl font-semibold mb-2">회원가입</h1>
-        <input placeholder="Name" className="w-full border px-3 py-2" />
-        <input placeholder="Email" className="w-full border px-3 py-2" />
-        <input placeholder="Password" type="password" className="w-full border px-3 py-2" />
-        <button className="w-full bg-black text-white py-2 rounded">가입하기</button>
-        <div className="text-center text-sm text-gray-600">또는</div>
-        <div className="grid grid-cols-3 gap-2">
-          <button className="border py-2 rounded">Google</button>
-          <button className="border py-2 rounded">Line</button>
-          <button className="border py-2 rounded">Facebook</button>
+      <form className="max-w-sm mx-auto px-4 py-10 space-y-5">
+        <div>
+          <Title1>회원가입</Title1>
+          <Body2 className="text-gray-600">계정을 생성합니다</Body2>
         </div>
-      </div>
+        <Input label="이름" placeholder="홍길동" value={name} onChange={(e) => setName(e.target.value)} />
+        <Input label="이메일" type="email" placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <Input label="비밀번호" type="password" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <Button type="submit" className="w-full">가입하기</Button>
+        <div className="text-center text-xs text-gray-600">또는</div>
+        <div className="grid grid-cols-3 gap-2">
+          <Button type="button" variant="outline">Google</Button>
+          <Button type="button" variant="outline">Line</Button>
+          <Button type="button" variant="outline">Facebook</Button>
+        </div>
+      </form>
     </PublicLayout>
   )
 }
+

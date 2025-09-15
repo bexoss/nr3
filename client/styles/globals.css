@@ -6,7 +6,33 @@ html, body, #__next {
   height: 100%;
 }
 
+/* Global font for KR/JP with graceful fallbacks */
+:root {
+  --font-cjk: 'Noto Sans KR', 'Noto Sans JP', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    'Apple SD Gothic Neo', 'Malgun Gothic', 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif;
+  --font-logo: 'KoHo', var(--font-cjk);
+}
+
+body {
+  font-family: var(--font-cjk);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 /* Prevent menu wrap */
 .no-wrap {
   white-space: nowrap;
+}
+
+/* Brand logo font */
+.logo-font {
+  font-family: var(--font-logo);
+  font-weight: 600; /* Semi Bold */
+  letter-spacing: 0.02em;
+}
+
+/* Main navigation font (Noto Sans KR/JP) */
+.nav-font {
+  font-family: var(--font-cjk);
+  font-weight: 500;
 }

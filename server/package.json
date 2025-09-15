@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon src/index.js",
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "seed": "node src/scripts/seed.js",
+    "seed:admin": "node src/scripts/createAdmin.js"
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",

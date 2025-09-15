@@ -4,6 +4,18 @@ import { User } from '../models/user.model.js'
 
 const r = Router()
 
+r.get('/me', async (req, res) => {
+  try {
+    const uid = req.cookies?.uid
+    if (!uid) return res.json({ user: null })
+    const user = await User.findById(uid).lean()
+    if (!user) return res.json({ user: null })
+    res.json({ user: { _id: user._id, email: user.email, name: user.name, isAdmin: !!user.isAdmin, shippingAddress: user.shippingAddress || null } })
+  } catch (e) {
+    res.json({ user: null })
+  }
+})
+
 r.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body || {}
