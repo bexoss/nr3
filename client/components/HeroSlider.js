@@ -17,20 +17,19 @@ export default function HeroSlider({ slides = [], interval = 5000 }) {
     <section className="relative h-[600px] overflow-hidden">
       {/* Slides */}
       <div
-        className="h-full w-full flex transition-transform duration-500 ease-in-out bg-no-repeat bg-right md:bg-center"
-        style={{
-          transform: `translateX(-${idx * 100}%)`,
-          backgroundImage: 'url(/images/ceramide-wide2.png)',
-          backgroundSize: 'cover',
-        }}
+        className="h-full w-full flex transition-transform duration-500 ease-in-out"
+        style={{ transform: `translateX(-${idx * 100}%)` }}
       >
         {slides.map((s, i) => (
-          <div key={i} className="w-full shrink-0 h-full">
+          <div
+            key={i}
+            className="w-full shrink-0 h-full bg-no-repeat bg-cover bg-right md:bg-center"
+            style={s && s.bgImage ? { backgroundImage: `url(${s.bgImage})` } : undefined}
+          >
             <div
               className={[
                 'relative h-full w-full flex items-center justify-center',
-                // keep slide background transparent so wrapper's backgroundImage is visible
-                'bg-transparent',
+                // subtle overlay for text readability
                 'after:absolute after:inset-0 after:pointer-events-none after:bg-gradient-to-br after:from-white/0 after:to-white/5',
               ].join(' ')}
             >

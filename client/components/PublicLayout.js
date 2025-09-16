@@ -5,6 +5,12 @@ import Button from './ui/Button'
 import Input from './ui/Input'
 import { apiGet } from '../lib/api'
 
+const navItemsLeft = [
+  { label: '제품', href: '/collections' },
+  { label: '브랜드', href: '/about' },
+  { label: '고객지원', href: '/guide' },
+]
+
 export default function PublicLayout({
   children,
   transparentHeader = false,
@@ -69,10 +75,12 @@ export default function PublicLayout({
                   MENU
                 </button>
                 {/* Left nav */}
-                <nav className="hidden md:flex gap-6 no-wrap items-center">
-                  <Link href="/collections">Products</Link>
-                  <Link href="/about">Brand</Link>
-                  <Link href="/guide">Guide</Link>
+                <nav className="text-sm font-medium hidden md:flex gap-6 no-wrap items-center">
+                  {navItemsLeft.map((item) => (
+                    <Link key={item.href} href={item.href} className="hidden md:inline-block">
+                      {item.label}
+                    </Link>
+                  ))}
                 </nav>
                 {/* Logo center */}
                 <Link href="/" className="text-xl logo-font absolute left-1/2 -translate-x-1/2">
@@ -105,9 +113,9 @@ export default function PublicLayout({
             </button>
             {/* Left nav */}
             <nav className="hidden md:flex gap-6 no-wrap items-center">
-             <Link href="/collections">Products</Link>
-                <Link href="/about">Brand</Link>
-                <Link href="/guide">Guide</Link>
+              {navItemsLeft.map((item) => (
+                <Link key={item.href}> {item.label}</Link>
+              ))}
             </nav>
             {/* Products hover submenu removed per request */}
             {/* Logo center (true centered, independent of side widths) */}
@@ -126,15 +134,15 @@ export default function PublicLayout({
               )}
             </nav>
             {/* Mobile right icons */}
-          <div className="md:hidden flex items-center gap-3">
-            <SearchButton />
-            <IconLink href="/cart" ariaLabel="Cart" icon="cart" />
-            {me ? (
-              <IconLink href="/me" ariaLabel="My Page" icon="user" />
-            ) : (
-              <IconLink href="/login" ariaLabel="Login" icon="user" />
-            )}
-          </div>
+            <div className="md:hidden flex items-center gap-3">
+              <SearchButton />
+              <IconLink href="/cart" ariaLabel="Cart" icon="cart" />
+              {me ? (
+                <IconLink href="/me" ariaLabel="My Page" icon="user" />
+              ) : (
+                <IconLink href="/login" ariaLabel="Login" icon="user" />
+              )}
+            </div>
           </div>
         )}
         {/* Mobile drawer */}
@@ -185,8 +193,23 @@ function SearchButton() {
   const [q, setQ] = useState('')
   return (
     <div className="relative">
-      <button type="button" aria-label="Search" className="p-2 rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-black/20" onClick={() => setOpen((v) => !v)}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <button
+        type="button"
+        aria-label="Search"
+        className="p-2 rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-black/20"
+        onClick={() => setOpen((v) => !v)}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
           <circle cx="11" cy="11" r="8" />
           <path d="m21 21-3.6-3.6" />
         </svg>
@@ -204,15 +227,39 @@ function SearchButton() {
 
 function IconLink({ href, ariaLabel, icon }) {
   return (
-    <Link href={href} aria-label={ariaLabel} className="p-2 rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-black/20">
+    <Link
+      href={href}
+      aria-label={ariaLabel}
+      className="p-2 rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-black/20"
+    >
       {icon === 'cart' ? (
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
           <circle cx="8" cy="21" r="1" />
           <circle cx="19" cy="21" r="1" />
           <path d="M2 2h3l3.6 12.59a2 2 0 0 0 2 1.41h7.92a2 2 0 0 0 2-1.58L23 7H6" />
         </svg>
       ) : (
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
           <path d="M20 21a8 8 0 0 0-16 0" />
           <circle cx="12" cy="7" r="4" />
         </svg>
