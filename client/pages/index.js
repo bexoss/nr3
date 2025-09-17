@@ -8,6 +8,8 @@ import { motion } from 'framer-motion'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { FreeMode } from 'swiper/modules'
 import { ScrollAnimationVariants } from '../lib/utils/animation'
+import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 
 // Swiper CSS
 import 'swiper/css'
@@ -21,7 +23,7 @@ export default function Home() {
       content: (
         <div>
           <Body2 className="text-gray-500 mb-1">Skin barrier care</Body2>
-          <Title1 className="mb-2">Ceramide 5000ppm</Title1>
+          <h1 className="text-3xl font-bold mb-2">Ceramide 5000ppm</h1>
           <Body1 className="text-gray-600 mb-6">
             High concentration ceramide essence to help protect your skin barrier and prevent moisture loss.
             <br /> Keep dry and sensitive skin hydrated and comfortable.
@@ -37,7 +39,7 @@ export default function Home() {
       content: (
         <div>
           <Body2 className="text-gray-500 mb-1">Revitalize your skin</Body2>
-          <Title1 className="mb-2">Salmon PDRN 100,000ppm</Title1>
+          <h1 className="text-3xl font-bold mb-2">Salmon PDRN 100,000ppm</h1>
           <Body1 className="text-gray-600 mb-6">
             PDRN helps support skin renewal for a firmer, healthier look.
             <br /> Pair with ceramide care to lock in moisture.
@@ -52,8 +54,172 @@ export default function Home() {
 
   return (
     <PublicLayout transparentHeader headerSlot={<HeroSlider slides={slides} />}>
-      <div className="py-10">
+      {/* Best Products */}
+      <div className="py-10 mt-5">
         <HomeBestSection />
+      </div>
+      {/* Common Concerns */}
+      <div className="py-10 px-12">
+        <h2 className="text-2xl font-bold">Common Concerns</h2>
+        <p className="mt-4 text-sm text-gray-600">Not sure where to begin? Here are some common skin concerns.</p>
+        <div className="">
+          <div className="grid grid-cols-6 gap-1 mt-10">
+            {[
+              {
+                label: 'Dryness',
+                image:
+                  'https://cdn.media.amplience.net/i/deciem/signs-of-aging-concern_1?fmt=auto&$poi$&sm=aspect&w=500&aspect=1:1',
+              },
+              {
+                label: 'Redness',
+                image:
+                  'https://cdn.media.amplience.net/i/deciem/congestion-concerns?fmt=auto&$poi$&sm=aspect&w=500&aspect=1:1',
+              },
+              {
+                label: 'Dullness',
+                image: 'https://cdn.media.amplience.net/i/deciem/Texture?fmt=auto&$poi$&sm=aspect&w=500&aspect=1:1',
+              },
+              {
+                label: 'Wrinkles',
+                image:
+                  'https://cdn.media.amplience.net/i/deciem/Dark%20Circles?fmt=auto&$poi$&sm=aspect&w=500&aspect=1:1',
+              },
+              {
+                label: 'Acne',
+                image:
+                  'https://cdn.media.amplience.net/i/deciem/Redness-Concern1?fmt=auto&$poi$&sm=aspect&w=500&aspect=1:1',
+              },
+              {
+                label: 'Dark Spots',
+                image:
+                  'https://cdn.media.amplience.net/i/deciem/Dryness-Concern?fmt=auto&$poi$&sm=aspect&w=500&aspect=1:1',
+              },
+            ].map((concern) => (
+              <div key={concern.label} className="flex flex-col items-start">
+                <img src={concern.image} alt={concern.label} className="w-40 h-40 mb-2" />
+                <span className="text-sm self-start">{concern.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <hr className="border-t border-gray-300 my-4 mt-10" />
+      </div>
+
+      {/* Mix Your Skin's Match */}
+      <div className="py-10 px-12">
+        <div className="flex gap-8">
+          <div className="basis-3/5">
+            <div>
+              <h2 className="text-2xl mb-8 font-bold">Find Your Skin’s Formula</h2>
+              <p className="text-gray-600 mb-8 text-sm">
+                Tell us your top skin concerns. We’ll recommend the formulations that can help.
+              </p>
+              <Link
+                href="/"
+                className="inline-flex items-center justify-between px-8 py-4 w-[280px] border border-gray-400 hover:bg-black hover:text-white transition-colors duration-300"
+              >
+                <span></span>
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </div>
+          </div>
+
+          <div className="basis-2/5">
+            <div className="relative">
+              <img
+                src={
+                  'https://nano-recipe-assets.s3.ap-northeast-2.amazonaws.com/images/detailImages/common_plenty_animation.gif'
+                }
+                alt={'기획 제품'}
+                style={{ width: '100%', height: 'auto' }}
+                className="w-full h-auto"
+              />
+            </div>
+          </div>
+        </div>
+        <hr className="border-t border-gray-300 my-4 mt-10" />
+      </div>
+
+      <div className="py-10 px-12">
+        <h2 className="text-2xl mb-8 font-bold">Make your own care.</h2>
+        <div className="flex gap-8">
+          <div className="basis-2/5">
+            <div className="relative">
+              <img
+                src={
+                  'https://nano-recipe-assets.s3.ap-northeast-2.amazonaws.com/images/detailImages/1756970949161-8482678.gif'
+                }
+                alt={'기획 제품'}
+                style={{ width: '100%', height: 'auto' }}
+                className="w-full h-auto"
+              />
+            </div>
+          </div>
+          <div className="basis-2/5">
+            <div className="relative">
+              <img
+                src={
+                  'https://nano-recipe-assets.s3.ap-northeast-2.amazonaws.com/images/detailImages/1756970949252-661468147.gif'
+                }
+                alt={'기획 제품'}
+                style={{ width: '100%', height: 'auto' }}
+                className="w-full h-auto"
+              />
+            </div>
+          </div>
+
+          <div className="basis-1/5">
+            <div className="p-4 pr-10">
+              <p className="text-gray-600 mb-8">
+                Tell us your top skin concerns. We’ll recommend the formulations that can help.
+              </p>
+              <Link
+                href="/"
+                className="inline-flex items-center justify-between px-8 py-4 w-[280px] border border-gray-400 hover:bg-black hover:text-white transition-colors duration-300"
+              >
+                <span></span>
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="py-10 px-12">
+        <h2 className="text-3xl mb-8 font-bold">As seen on social</h2>
+      </div>
+
+      <div className="py-10">
+        <div className="flex gap-8">
+          <div className="basis-3/5">
+            <div className="relative">
+              <img
+                src={
+                  'https://nano-recipe-assets.s3.ap-northeast-2.amazonaws.com/images/bannerImages/1752047428925-903165812.webp'
+                }
+                alt={'기획 제품'}
+                style={{ width: '100%', height: 'auto' }}
+                className="w-full h-auto"
+              />
+            </div>
+          </div>
+          <div className="basis-2/5">
+            <div className="p-4 pr-10">
+              <h2 className="text-3xl mb-8">기획제품</h2>
+              <p className="text-gray-600 mb-8">
+                원액 제품이 너무 많아서 고르기 어려우신 분들을 위해 피부타입 별 세트를 추천드립니다. 본인의 피부타입에
+                맞는 세트를 구매해 제대로 관리해보세요.
+              </p>
+              <Link
+                href="/"
+                className="inline-flex items-center justify-between px-8 py-4 w-[280px] border border-gray-400 hover:bg-black hover:text-white transition-colors duration-300"
+              >
+                <span></span>
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     </PublicLayout>
   )
@@ -100,13 +266,13 @@ function HomeBestSection() {
         viewport={{ once: true, margin: '-100px' }}
         variants={ScrollAnimationVariants}
       >
-        <div className="text-xl font-medium whitespace-nowrap">Best Products</div>
+        <h2 className="text-2xl font-bold whitespace-nowrap">Best Products</h2>
         <div className="text-base text-gray-600 whitespace-nowrap mt-2">Most searched this week</div>
       </motion.div>
 
       {/* 캐러셀 - motion 애니메이션 적용 */}
       <motion.div
-        className="relative max-w-6xl mx-auto px-4"
+        className="relative max-w-7xl mx-auto px-4"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: '-50px' }}
